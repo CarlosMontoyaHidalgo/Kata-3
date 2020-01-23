@@ -10,13 +10,14 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.ui.ApplicationFrame;
 
 public class HistogramDisplay extends ApplicationFrame {
+    
     private final Histogram<String> histogram;
     
-    public HistogramDisplay(Histogram histogram){
-        super("HISTOGRAM");
+    public HistogramDisplay(Histogram<String> histogram){
+        super("HISTOGRAMA");
         this.histogram = histogram;
-        this.setContentPane(createPanel());
-        this.pack();
+        setContentPane(createPanel());
+        pack();
     }
         
         public void execute() {
@@ -30,29 +31,16 @@ public class HistogramDisplay extends ApplicationFrame {
         }
         
         private JFreeChart createChart(DefaultCategoryDataset dataSet) {
-        JFreeChart chart = ChartFactory.createBarChart("Histogram JFreeChart",
-                "Domino emaail",
-                "Num de emails",
-                dataSet,
-                PlotOrientation.VERTICAL,
-                false,
-                false,
-                rootPaneCheckingEnabled);
-               
+            JFreeChart chart = ChartFactory.createBarChart3D("Histogram JFreeChart", "Dominio de emails", "Número de emails", dataSet, PlotOrientation.VERTICAL, false, false, rootPaneCheckingEnabled);
             return chart;
         }
         
         private DefaultCategoryDataset createDataset(){
             DefaultCategoryDataset dataSet = new DefaultCategoryDataset();
             
-            for (String key : histogram.keySet()){
+            for(String key : histogram.keySet()){
                 dataSet.addValue(histogram.get(key),"",key);
             }
-            
-            dataSet.addValue(300,"","ulpgc.es");
-            dataSet.addValue(400,"","dis.ulpgc.es");
-            dataSet.addValue(200,"","gmail.com");
-            
             return dataSet;
         }
    }

@@ -7,6 +7,8 @@ public class Kata3 {
         
         histogram.increment("mail.com");
         histogram.increment("ulpgc.es");
+        histogram.increment("ulpgc.es");
+        histogram.increment("ulpgc.es");
         histogram.increment("gmail.com");
         histogram.increment("dis.ulpgc.es");
         
